@@ -1,0 +1,20 @@
+<div class="dropdown searchable-pair" dropdown on-toggle="toggled(open)">
+	<a class="dropdown-toggle btn btn-default" data-toggle="dropdown" dropdown-toggle data-target="#"
+		 ng-class="{'disabled': readOnly}">
+
+		<span class="limit-ellipsis" ng-style="{ 'width' : width }">
+			<small>
+				{{ updateSelectedItem() }}
+			</small>
+		</span>
+	</a>
+	<ul ng-if="!readOnly && allItems.length" class="dropdown-menu dropdown-menu-form form-control" role="menu">
+		<li><input type="text" class="form-control" ng-model="searchQuery" placeholder="Search"></li>
+		<li ng-repeat="item in ::allItems track by $index"
+			ng-hide="searchQuery.length && item.driver.name.toLowerCase().indexOf(searchQuery.toLowerCase()) < 0 && item.vehicle.regno.toLowerCase().indexOf(searchQuery.toLowerCase()) < 0">
+				<a href="#" ng-click="itemSelected()">
+				    {{ item.driver.name }} / {{item.vehicle.regno}}
+				</a>
+		</li>
+	</ul>
+</div>
